@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card (click) = "toPetPage();" class="card1">
+      <img src="../assets/logbg.jpg"/>
+      <div class="card-title">Pet Insurance</div>
+  </ion-card>
+
+  <ion-card (click) = "toHousePage();">
+    <img src="../assets/house.jpeg"/>
+    <div class="card-title">House Insurance</div>
+  </ion-card>
+
+  <ion-card (click) = "toPhonePage();">
+    <img src="../assets/phone.jpg"/>
+    <div class="card-title">Device Insurance</div>
+  </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab color="blue"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab><ion-icon name="ios-build"></ion-icon></button>
+      <button ion-fab><ion-icon name="ios-cart"></ion-icon></button>
+      <button ion-fab><ion-icon name="ios-chatbubbles"></ion-icon></button>
+      <button ion-fab><ion-icon name="ios-log-out" (click) = "Logout()"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-content class="background">
+	<ion-card>
+			<ion-card-header>
+			</ion-card-header>
+			<ion-card-content>
+				<ion-list no-line>
+					<h3>{{message}}</h3>
+					<ion-item>
+						<ion-input input="email" [(ngModel)] = "user.email" placeholder="Email"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-input input="password" [(ngModel)] = "user.password" type="password" placeholder="Password"></ion-input>
+					</ion-item>
+					<a>Forgot your login detail?<b> Get help signing in.</b></a>
+					<br>
+					<button ion-button black outline color="light" (click) = "nextPage(user);" >Log in</button> 
+					<p>OR</p>
+					<button ion-button block color="facebook" (click) = "fblogin();">
+						<ion-icon name="logo-facebook"></ion-icon> Login with Facebook
+					</button>
+					<button ion-button clear full color="light" (click) = "ToRegisterPage();">Don't have an account? Sign up</button>
+				</ion-list>
+			</ion-card-content>
+	</ion-card>
+</ion-content>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+
