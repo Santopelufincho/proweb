@@ -76,7 +76,13 @@
           <button ion-button block button-end>View offers for {{tablet.version}}</button>
         </p>
     </ion-item> 
-
+    <h1>Debug Section</h1>
+    <ion-item *ngFor= "let phone of phoneList">
+      <h2>{{phone}}</h2>
+    </ion-item>
+    <ion-item *ngFor= "let tablet of tabletList">
+      <h2>{{tablet}}</h2>
+    </ion-item>
   </ion-list>
 
 </ion-content>
