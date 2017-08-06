@@ -45,22 +45,20 @@
 
 
   <ion-list>
-    <ion-item *ngFor="let phone of phones | async">
+    <ion-item *ngFor="let phone of phones | async; let i = index;">
         <ion-avatar item-start>
           <img src= "{{phone.image}}">
         </ion-avatar>
         <h2>
           {{phone.version}}
         </h2>
-        
         <h3> 
           {{phone.manufacturer}} 
         </h3>
         <p>
           Phone   
-          <button ion-button block button-end > View offers for {{phone.version}}</button> 
+          <button value="{{phone.version}}" (click) = "toSubmission($event)"> View offers for {{phone.version}}</button> 
         </p>
-
     </ion-item>
 
     <ion-item *ngFor= "let tablet of tablets | async">
@@ -73,14 +71,19 @@
         </h3>
         <p>
           Tablet    
-          <button ion-button block button-end>View offers for {{tablet.version}}</button>
+            <button value = "{{tablet.version}}" (click) = "toSubmission($event)" >View offers for {{tablet.version}}</button>
         </p>
     </ion-item> 
-    <h1>Debug Section</h1>
+
+
+
+    <h1>Debug Section (DELETE) </h1>
     <ion-item *ngFor= "let phone of phoneList">
       <h2>{{phone}}</h2>
     </ion-item>
-    <ion-item *ngFor= "let tablet of tabletList">
+    <ion-item *ngFor= "let tablet of tabletList; let i = index;" >
+      <h1>{{i+1}}</h1>
+      <button value="{{i}}" (click) = "testing($event)" >Test</button>
       <h2>{{tablet}}</h2>
     </ion-item>
   </ion-list>

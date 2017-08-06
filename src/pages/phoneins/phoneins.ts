@@ -22,7 +22,6 @@ import * as _ from 'lodash';
 })
 export class PhoneinsPage {
 
-
 	public tabletList: string[] =[];
 	public phoneList: string[] = [];
 	public devicetype: any;
@@ -40,11 +39,12 @@ export class PhoneinsPage {
 	public tablets:FirebaseListObservable<any>;
 	
 
-  	constructor(public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFireDatabase, public data :DataProvider ) {
+  	constructor(public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFireDatabase, public data :DataProvider) {
 		this.devicetype = firebase.database().ref('/Devices/PHONE/Information');
-  		this.devices = angFire.list('/Devices');
   		this.phones = angFire.list('/Devices/PHONE/Information/');
 		this.tablets = angFire.list('/Devices/TABLET/Information/');
+		data.devicety = this.devicename;
+		
 		
 		this.tabletsnap = angFire.list('/Devices/TABLET/Information/', { preserveSnapshot: true })
 			.subscribe(snapshots=>{
@@ -70,19 +70,16 @@ export class PhoneinsPage {
     })*/
 
 	}
-
-
-	tosubmit(version: string){
-		this.navCtrl.push(DevicesubmitPage);
-		version = this.devicename;
-		console.log(version);
-	}
-
-	getPhoneVersion(version: string)
+	
+	toSubmission(e)
 	{
 		//phone = this.devicename;
+		var version = e.target.getAttribute('value');
 		console.log(version);
+		version = this.devicename;
+		this.navCtrl.push(DevicesubmitPage);
 	}
+
 
   	test() {
   		var getmeversion = this.devicetype.child('PSAMJ7');
@@ -149,7 +146,6 @@ export class PhoneinsPage {
   }
 
    pickManufac(manufac: string) {
-   	console.log("I have been triggered");
    	if (this.tabletop == false && this.phoneop == true) {
 		
 		this.tabletList = [];

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PhoneinsPage } from '../phoneins/phoneins';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the DevicesubmitPage page.
@@ -11,11 +13,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-devicesubmit',
   templateUrl: 'devicesubmit.html',
+  providers: [DataProvider]
 })
 export class DevicesubmitPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public device = "";
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data:DataProvider) {
+     console.log(data.devicety);
   }
+
+  public getDeviceType(){
+    console.log(this.device);
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DevicesubmitPage');

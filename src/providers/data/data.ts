@@ -16,6 +16,7 @@ export class DataProvider {
 	public devices: any;
 	public phones: any;
 	public tablets: any;
+	public devicety = "";
 
 	/*init() {
 		const fbConf = {
@@ -34,12 +35,11 @@ export class DataProvider {
 
 
   	constructor() {
-
+		
   		this.db = firebase.database().ref('/');
 		this.devices = firebase.database().ref('/Devices');
 		this.phones = firebase.database().ref('/Devices/PHONES');
 		this.tablets = firebase.database().ref('/Devices/TABLETS');
 
   	}
-
  }
