@@ -13,6 +13,7 @@ import { PhoneinsPage } from '../pages/phoneins/phoneins';
 import { HousinsPage } from '../pages/housins/housins';
 import { RegisterPage } from '../pages/register/register';
 import { DevicesubmitPage } from '../pages/devicesubmit/devicesubmit';
+import { InsurancepoliciesPage } from '../pages/insurancepolicies/insurancepolicies';
 
 import * as firebase from 'firebase';
 

@@ -86,8 +86,9 @@ export class PhoneinsPage {
     		.subscribe(snapshots=>{
         		snapshots.forEach(snapshot => {
 					  console.log(snapshot.key)
-						if (snapshot.key != "") {
+						if (snapshot.key != null) {
 							this.deviceID = snapshot.key;
+							this.navCtrl.push(DevicesubmitPage, {devicetype: this.devicename, deviceID: this.deviceID});
 						}
         		});
 			})
@@ -102,14 +103,15 @@ export class PhoneinsPage {
     		.subscribe(snapshots=>{
         		snapshots.forEach(snapshot => {
 					  console.log(snapshot.key)
-						if (snapshot.key != "") {
+						if (snapshot.key != null) {
 							this.deviceID = snapshot.key;
+							this.navCtrl.push(DevicesubmitPage, {devicetype: this.devicename, deviceID: this.deviceID});
 						}
         		});
 			})
 			
 		
-		this.navCtrl.push(DevicesubmitPage, {devicetype: this.devicename, deviceID: this.deviceID});
+		
 	}
 
   	phoneoption() {

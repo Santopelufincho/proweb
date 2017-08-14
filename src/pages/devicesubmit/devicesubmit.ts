@@ -4,6 +4,7 @@ import { PhoneinsPage } from '../phoneins/phoneins';
 import { DataProvider } from '../../providers/data/data';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FirebaseListObservable } from 'angularfire2/database';
+import { InsurancepoliciesPage } from '../insurancepolicies/insurancepolicies';
 import * as _ from 'lodash';
 
 /**
@@ -38,6 +39,10 @@ export class DevicesubmitPage {
 
   public getDeviceType(){
     console.log(this.device);
+  }
+
+  public toSubmit(){
+      this.navCtrl.push(InsurancepoliciesPage, {deviceID: this.deviceID, devicename: this.device})
   }
 
 
