@@ -25,7 +25,8 @@ export class PhoneinsPage {
 	public tabletList: string[] =[];
 	public phoneList: string[] = [];
 	public devicetype: any;
-	public devicename: "";	
+	public devicename: any;	
+	public deviceID: any;
 	manufacture = "";
 	versionname = "";
 	phoneop = false;
@@ -43,13 +44,12 @@ export class PhoneinsPage {
 		this.devicetype = firebase.database().ref('/Devices/PHONE/Information');
   		this.phones = angFire.list('/Devices/PHONE/Information/');
 		this.tablets = angFire.list('/Devices/TABLET/Information/');
-		data.devicety = this.devicename;
 		
 		
 		this.tabletsnap = angFire.list('/Devices/TABLET/Information/', { preserveSnapshot: true })
 			.subscribe(snapshots=>{
         		snapshots.forEach(snapshot => {
-					console.log(snapshot.key, snapshot.child('version').val());
+				
 					this.tabletList.push(snapshot.child('version').val());
         		});
    			})
@@ -57,7 +57,7 @@ export class PhoneinsPage {
 		this.phonesnap = angFire.list('/Devices/PHONE/Information/', { preserveSnapshot: true })
 		.subscribe(snapshots=>{
         		snapshots.forEach(snapshot => {
-					  console.log(snapshot.key, snapshot.child('version').val());
+					  
 					  this.phoneList.push(snapshot.child('version').val());
         		});
    		})
@@ -73,18 +73,44 @@ export class PhoneinsPage {
 	
 	toSubmission(e)
 	{
-		//phone = this.devicename;
 		var version = e.target.getAttribute('value');
 		console.log(version);
-		version = this.devicename;
-		this.navCtrl.push(DevicesubmitPage);
+		this.devicename = version;
+  		this.phonesnap = this.angFire.list('/Devices/PHONE/Information', {
+			preserveSnapshot:true,
+  			query: {
+  				orderByChild: 'version', 
+  				equalTo: version
+  			}	
+		})
+    		.subscribe(snapshots=>{
+        		snapshots.forEach(snapshot => {
+					  console.log(snapshot.key)
+						if (snapshot.key != "") {
+							this.deviceID = snapshot.key;
+						}
+        		});
+			})
+
+		this.tabletsnap = this.angFire.list('/Devices/TABLET/Information', {
+			preserveSnapshot:true,
+  			query: {
+  				orderByChild: 'version', 
+  				equalTo: version
+  			}	
+		})
+    		.subscribe(snapshots=>{
+        		snapshots.forEach(snapshot => {
+					  console.log(snapshot.key)
+						if (snapshot.key != "") {
+							this.deviceID = snapshot.key;
+						}
+        		});
+			})
+			
+		
+		this.navCtrl.push(DevicesubmitPage, {devicetype: this.devicename, deviceID: this.deviceID});
 	}
-
-
-  	test() {
-  		var getmeversion = this.devicetype.child('PSAMJ7');
-  		console.log(getmeversion.once('value'));
-  	}
 
   	phoneoption() {
   		this.phoneop = true;

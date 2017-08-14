@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PhoneinsPage } from '../phoneins/phoneins';
 import { DataProvider } from '../../providers/data/data';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { FirebaseListObservable } from 'angularfire2/database';
+import * as _ from 'lodash';
 
 /**
  * Generated class for the DevicesubmitPage page.
@@ -18,9 +21,19 @@ import { DataProvider } from '../../providers/data/data';
 export class DevicesubmitPage {
 
   public device = "";
+  public deviceID = "";
+  public phones: any;
+  public tablets: any;
+  public tabletList: string[] =[];
+	public phoneList: string[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data:DataProvider) {
-     console.log(data.devicety);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data:DataProvider, public angFire: AngularFireDatabase) {
+     this.device = navParams.get('devicetype');
+     this.deviceID = navParams.get('deviceID');
+     console.log(this.deviceID); 
+     console.log(this.device);
+     this.phones = angFire.list('/Devices/PHONE/InsurancePolicy/');
+     this.tablets = angFire.list('/Devices/TABLET/InsurancePolicy/');
   }
 
   public getDeviceType(){

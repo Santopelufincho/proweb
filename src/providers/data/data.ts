@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { PhoneinsPage } from '../../pages/phoneins/phoneins';
 import firebase from 'firebase'; 
 import 'rxjs/add/operator/map';
 
@@ -40,6 +41,5 @@ export class DataProvider {
 		this.devices = firebase.database().ref('/Devices');
 		this.phones = firebase.database().ref('/Devices/PHONES');
 		this.tablets = firebase.database().ref('/Devices/TABLETS');
-
   	}
  }
